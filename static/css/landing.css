@@ -1,0 +1,85 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+}
+.bg-image {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url('../images/bg.jpg') no-repeat center center/cover;
+    z-index: 1;
+    transition: transform 0.5s;
+}
+.overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(20, 20, 30, 0.7);
+    z-index: 2;
+}
+.landing-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 3;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    width: 90vw;
+    max-width: 500px;
+}
+.landing-content h1 {
+    font-size: 2.8rem;
+    font-weight: bold;
+    margin-bottom: 1.2rem;
+    letter-spacing: 1px;
+    text-shadow: 0 4px 24px rgba(0,0,0,0.4);
+}
+.landing-content p {
+    font-size: 1.3rem;
+    margin-bottom: 2.5rem;
+    color: #e0e0e0;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+.get-started-btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, #640238 0%, #4e033e 100%);
+    color: #fff;
+    border: none;
+    border-radius: 40px;
+    box-shadow: 0 6px 24px rgba(76,175,80,0.2);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+    letter-spacing: 1px;
+    opacity: 0.95;
+}
+.get-started-btn:hover {
+    background: linear-gradient(135deg, #8c0771 0%, #83047e 100%);
+    transform: scale(1.07);
+    box-shadow: 0 10px 32px rgba(76,175,80,0.3);
+    opacity: 1;
+}
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+.fade-in.delay-1 { animation-delay: 0.5s; }
+.fade-in.delay-2 { animation-delay: 1s; }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 600px) {
+    .landing-content h1 { font-size: 2rem; }
+    .landing-content p { font-size: 1rem; }
+    .get-started-btn { font-size: 1rem; padding: 0.8rem 1.5rem; }
+} 

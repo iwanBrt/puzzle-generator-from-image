@@ -1,0 +1,290 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background: url('../images/bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    position: relative;
+}
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(30, 20, 50, 0.7);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(40, 20, 60, 0.92);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1;
+}
+
+h1 {
+    text-align: center;
+    color: #e0d7ff;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 8px rgba(80, 0, 120, 0.2);
+}
+
+.upload-section {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1rem;
+    background: rgba(60, 30, 90, 0.7);
+    border-radius: 10px;
+}
+
+.puzzle-container {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    background: rgba(60, 30, 90, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#puzzleGrid {
+    display: grid;
+    gap: 3px;
+    background-color: #3a2a5d;
+    padding: 3px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.puzzle-tile {
+    width: 100%;
+    height: 100%;
+    cursor: move;
+    -webkit-user-select: none;
+    user-select: none;
+    transition: all 0.3s ease;
+    border: 2px solid #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.puzzle-tile:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.puzzle-tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.puzzle-tile.dragging {
+    opacity: 0.5;
+    z-index: 1000;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.puzzle-tile.drag-over {
+    border: 2px solid #4CAF50;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+}
+
+.controls {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+button {
+    padding: 0.8rem 1.5rem;
+    background: linear-gradient(135deg, #5c0358 0%, #5c0358 100%);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #b207c2 0%, #b207c2 100%);
+}
+
+select {
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    border: 2px solid #e0e0e0;
+    background-color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+select:hover {
+    border-color: #4CAF50;
+}
+
+input[type="file"] {
+    padding: 0.8rem;
+    background: white;
+    border-radius: 25px;
+    border: 2px solid #e0e0e0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+input[type="file"]:hover {
+    border-color: #4CAF50;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: white;
+    margin: 15% auto;
+    padding: 2rem;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    position: relative;
+    animation: modalSlideIn 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    color: #666;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.close:hover {
+    color: #333;
+    transform: rotate(90deg);
+}
+
+#resultMessage {
+    margin-top: 1rem;
+    font-size: 1.3rem;
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+/* Instructions section */
+.instructions {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin: 2rem 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.instructions h2 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.instructions ol {
+    padding-left: 1.5rem;
+    color: #34495e;
+}
+
+.instructions li {
+    margin-bottom: 0.5rem;
+}
+
+.fade-in-modal {
+    animation: fadeInModal 0.5s;
+}
+@keyframes fadeInModal {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+#playAgainBtn {
+    padding: 0.7rem 2rem;
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    box-shadow: 0 4px 12px rgba(76,175,80,0.15);
+}
+#playAgainBtn:hover {
+    background: linear-gradient(135deg, #45a049 0%, #4CAF50 100%);
+    transform: scale(1.05);
+}
+
+#giveUpBtn {
+    padding: 0.7rem 2rem;
+    background: linear-gradient(135deg, #b207c2 0%, #5c0358 100%);
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    box-shadow: 0 4px 12px rgba(178,7,194,0.15);
+    margin-left: 1rem;
+}
+#giveUpBtn:hover {
+    background: linear-gradient(135deg, #5c0358 0%, #b207c2 100%);
+    transform: scale(1.05);
+} 

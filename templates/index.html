@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Puzzle Generator</h1>
+        
+        <div class="instructions">
+            <h2>Cara Bermain Puzzle:</h2>
+            <ol>
+                <li>Pilih gambar yang ingin dijadikan puzzle dengan mengklik tombol "Choose File"</li>
+                <li>Pilih ukuran grid puzzle (3x3, 4x4, atau 5x5) sesuai tingkat kesulitan yang diinginkan</li>
+                <li>Klik tombol "Generate Puzzle" untuk membuat puzzle</li>
+                <li>Susun puzzle dengan cara drag & drop (seret dan lepas) potongan gambar ke posisi yang benar</li>
+                <li>Setelah selesai menyusun, klik tombol "Check Solution" untuk memeriksa jawaban</li> 
+            </ol>
+        </div>
+        
+        <div class="upload-section">
+            <input type="file" id="imageInput" accept="image/*">
+            <select id="gridSize">
+                <option value="3">3x3 Grid</option>
+                <option value="4">4x4 Grid</option>
+                <option value="5">5x5 Grid</option>
+            </select>
+            <button id="generatePuzzle">Generate Puzzle</button>
+        </div>
+
+        <div class="puzzle-container">
+            <div id="puzzleGrid"></div>
+        </div>
+
+        <div class="controls">
+            <button id="checkSolution" style="display: none;">Check Solution</button>
+        </div>
+    </div>
+
+    <div id="resultModal" class="modal">
+        <div class="modal-content fade-in-modal">
+            <span class="close">&times;</span>
+            <p id="resultMessage"></p>
+            <button id="playAgainBtn" style="display:none; margin-top:1.5rem;">Main Lagi</button>
+            <button id="giveUpBtn" style="display:none; margin-top:1.5rem; background:linear-gradient(135deg,#b207c2 0%,#5c0358 100%);">Nyerah</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/puzzle.js') }}"></script>
+</body>
+</html> 
